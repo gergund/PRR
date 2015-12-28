@@ -14,17 +14,17 @@ use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 
-class DemoCommand extends Command
+class CollectCommand extends Command
 {
     protected function configure()
     {
         $this
-            ->setName('demo:greet')
-            ->setDescription('Greet someone')
+            ->setName('collect:data')
+            ->setDescription('Collecting HW and SW data for the report ')
             ->addArgument(
-                'name',
-                InputArgument::OPTIONAL,
-                'Who do you want to greet?'
+                'role',
+                InputArgument::REQUIRED,
+                'Set server role type for collecting data'
             )
             ->addOption(
                 'yell',
@@ -37,15 +37,13 @@ class DemoCommand extends Command
 
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-        $name = $input->getArgument('name');
-        if ($name) {
-            $text = 'Hello '.$name;
-        } else {
-            $text = 'Hello';
+        $role = $input->getArgument('role');
+        if ($role) {
+            $text = 'Role: '.$role;
         }
 
         if ($input->getOption('yell')) {
-            $text = strtoupper($text);
+            $text = strtoupper($role);
         }
 
         $output->writeln($text);
