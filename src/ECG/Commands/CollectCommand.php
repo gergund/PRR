@@ -16,6 +16,9 @@ use Symfony\Component\Console\Output\OutputInterface;
 
 class CollectCommand extends Command
 {
+
+    protected $roles = ['application','database'];
+
     protected function configure()
     {
         $this
@@ -33,6 +36,21 @@ class CollectCommand extends Command
                 'If set, the task will yell in uppercase letters'
             )
         ;
+    }
+
+    protected function interact(InputInterface $input, OutputInterface $output){
+        $role = $input->getArgument('role');
+        if (is_null($role)){
+            $output->writeln('<error>Role is not defined, please specify it. For example: </error>');
+            foreach($this->roles as $item){
+                $output->writeln('<info>collect:data '.$item.'</info>');
+            }
+        }
+        else {
+               if(!in_array($role, $this->roles, true)){
+                   $output->writeln('<error>None of defined Role is matched. Use application or database </error>');
+               }
+            }
     }
 
     protected function execute(InputInterface $input, OutputInterface $output)
