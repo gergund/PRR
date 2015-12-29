@@ -71,8 +71,10 @@ class CollectCommand extends Command
     protected function role_application_execute(InputInterface $input, OutputInterface $output)
     {
         $info_os = new OS();
-        $info = $info_os->getKernel();
-        $text = "Application execution statement".$info;
+        $kernel = $info_os->getKernel();
+        $hostname = $info_os->getHostName();
+        $info = 'Linux version: '.$kernel.' Hostname: '.$hostname;
+        $text = "Application execution statement: ".$info;
         $output->writeln($text);
     }
 
