@@ -11,8 +11,9 @@ namespace ECG\Commands;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
-use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
+
+use ECG\Infos\OS;
 
 class CollectCommand extends Command
 {
@@ -55,11 +56,11 @@ class CollectCommand extends Command
         if ($role) {
             switch($role){
                 case 'application':
-                    echo "Application Role:";
+                    echo "Application Role: ";
                     $this->role_application_execute($input,$output);
                     break;
                 case 'database':
-                    echo "Database Role:";
+                    echo "Database Role: ";
                     $this->role_database_execute($input,$output);
                     break;
             }
@@ -69,7 +70,9 @@ class CollectCommand extends Command
 
     protected function role_application_execute(InputInterface $input, OutputInterface $output)
     {
-        $text = "Application execution statement";
+        $info_os = new OS();
+        $info = $info_os->getKernel();
+        $text = "Application execution statement".$info;
         $output->writeln($text);
     }
 
