@@ -29,12 +29,6 @@ class CollectCommand extends Command
                 InputArgument::REQUIRED,
                 'Set server role type for collecting data'
             )
-            ->addOption(
-                'yell',
-                null,
-                InputOption::VALUE_NONE,
-                'If set, the task will yell in uppercase letters'
-            )
         ;
     }
 
@@ -55,15 +49,34 @@ class CollectCommand extends Command
 
     protected function execute(InputInterface $input, OutputInterface $output)
     {
+
         $role = $input->getArgument('role');
+
         if ($role) {
-            $text = 'Role: '.$role;
+            switch($role){
+                case 'application':
+                    echo "Application Role:";
+                    $this->role_application_execute($input,$output);
+                    break;
+                case 'database':
+                    echo "Database Role:";
+                    $this->role_database_execute($input,$output);
+                    break;
+            }
         }
 
-        if ($input->getOption('yell')) {
-            $text = strtoupper($role);
-        }
+    }
 
+    protected function role_application_execute(InputInterface $input, OutputInterface $output)
+    {
+        $text = "Application execution statement";
         $output->writeln($text);
     }
+
+    protected function role_database_execute(InputInterface $input, OutputInterface $output)
+    {
+        $text = "Database execution statement";
+        $output->writeln($text);
+    }
+
 }
