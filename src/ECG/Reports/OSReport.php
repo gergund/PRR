@@ -20,6 +20,7 @@ class OSReport {
     public function PrepareReport(InputInterface $input, OutputInterface $output){
 
         $os_info = new OSInfo();
+        $platform = $os_info->getPlatform();
         $kernel = $os_info->getKernel();
         $hostname = $os_info->getHostName();
 
@@ -27,8 +28,10 @@ class OSReport {
         $output->writeln('Table:');
 
         $table = new Table($output);
+        $table->addRow(['Platform:', ]);
         $table->addRow(['Kernel version: ', $kernel]);
         $table->addRow(['Hostname: ', $hostname]);
+
 
         $table->render();
     }
