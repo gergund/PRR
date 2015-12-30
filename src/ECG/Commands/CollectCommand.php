@@ -8,7 +8,7 @@
 
 namespace ECG\Commands;
 
-//use ECG\Infos\OSInfo;
+//
 use ECG\Reports\OSReport;
 
 use Symfony\Component\Console\Command\Command;
@@ -75,14 +75,6 @@ class CollectCommand extends Command
     {
         $os_report = new OSReport();
         $os_report->PrepareReport($input,$output);
-
-
-
-        //$kernel = $os_info->getKernel();
-        //$hostname = $os_info->getHostName();
-        //$info = 'Linux version: '.$kernel.' Hostname: '.$hostname;
-        //$text = "Application execution statement: ".$info;
-        //$output->writeln($text);
     }
 
     protected function role_database_execute(InputInterface $input, OutputInterface $output)
