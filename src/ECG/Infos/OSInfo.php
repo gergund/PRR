@@ -22,7 +22,7 @@ class OSInfo {
             return 'Unknown';
         }
 
-        return $match[1];
+        return $match[0];
     }
 
     public function getKernel(){
