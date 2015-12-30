@@ -27,9 +27,6 @@ class OSReport {
         $output->writeln('Table:');
 
         $table = new Table($output);
-        $table->setHeaders(array(
-            array(new TableCell('OS parameters'),array('colspan' => 2))
-        ));
         $table->addRow(['Kernel version: ', sprintf('<info>%s</info>',$kernel)]);
         $table->addRow(['Hostname: ', sprintf('<info>%s</info>',$hostname)]);
 
