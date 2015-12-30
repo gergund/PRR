@@ -97,6 +97,7 @@ class OSInfo {
     }
 
     public function getCompiler(){
+
         $contents=shell_exec('gcc -v 2>&1');
 
         $contents=trim($contents);
@@ -104,6 +105,7 @@ class OSInfo {
         if (preg_match('/gcc version (.*)/', $contents, $match) != 1) {
             return 'Unknown';
         }
+
         return $match[0];
     }
 
