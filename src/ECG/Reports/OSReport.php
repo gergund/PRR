@@ -24,6 +24,8 @@ class OSReport {
         $release = $os_info->getRelease();
         $kernel = $os_info->getKernel();
         $arch = $os_info->getArchitecture();
+        $compiler =$os_info->getCompiler();
+        $threading = $os_info->getThreading();
         $hostname = $os_info->getHostName();
 
         $output->writeln('');$output->writeln('');
@@ -32,8 +34,10 @@ class OSReport {
         $table = new Table($output);
         $table->addRow(['Platform', $platform]);
         $table->addRow(['Release', $release]);
-        $table->addRow(['Architecture', $arch]);
         $table->addRow(['Kernel', $kernel]);
+        $table->addRow(['Architecture', $arch]);
+        $table->addRow(['Threading', $threading]);
+        $table->addRow(['Compiler', $compiler]);
         $table->addRow(['Hostname', $hostname]);
 
         $table->render();

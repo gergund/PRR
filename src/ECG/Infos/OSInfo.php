@@ -83,6 +83,30 @@ class OSInfo {
 
     }
 
+    public function getThreading(){
+
+        $contents=shell_exec('getconf -a | grep GNU_LIBPTHREAD_VERSION &> /dev/null');
+
+        $contents=trim($contents);
+
+        if (preg_match('/GNU_LIBPTHREAD_VERSION             (\S+ *.*)/', $contents, $match) != 1) {
+            return 'Unknown';
+        }
+
+        return $match[1];
+    }
+
+    public function getCompiler(){
+        $contents=shell_exec('gcc -v 2>&1');
+
+        $contents=trim($contents);
+
+        if (preg_match('/gcc version (.*)/', $contents, $match) != 1) {
+            return 'Unknown';
+        }
+        return $match[0];
+    }
+
     public function getKernel(){
 
         $file = '/proc/version';
