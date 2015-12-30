@@ -28,10 +28,10 @@ class OSReport {
 
         $table = new Table($output);
         $table->setHeaders(array(
-            array(new TableCell('OS parameters'),array('colspan' => 3))
+            array(new TableCell('OS parameters'),array('colspan' => 2))
         ));
-        $table->addRow([sprintf('Kernel version: <info>%s</info>',$kernel)]);
-        $table->addRow([sprintf('Hostname: <info>%s</info>',$hostname)]);
+        $table->addRow(['Kernel version: ', sprintf('<info>%s</info>',$kernel)]);
+        $table->addRow(['Hostname: ', sprintf('<info>%s</info>',$hostname)]);
 
         $table->render();
     }
