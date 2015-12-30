@@ -7,7 +7,7 @@
  */
 namespace ECG\Infos;
 
-class OS {
+class OSInfo {
 
     public function getKernel(){
 
@@ -36,5 +36,7 @@ class OS {
 
         return $hostname;
     }
+
+
 
 }

@@ -8,12 +8,15 @@
 
 namespace ECG\Commands;
 
+//use ECG\Infos\OSInfo;
+use ECG\Reports\OSReport;
+
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 
-use ECG\Infos\OS;
+
 
 class CollectCommand extends Command
 {
@@ -70,12 +73,16 @@ class CollectCommand extends Command
 
     protected function role_application_execute(InputInterface $input, OutputInterface $output)
     {
-        $info_os = new OS();
-        $kernel = $info_os->getKernel();
-        $hostname = $info_os->getHostName();
-        $info = 'Linux version: '.$kernel.' Hostname: '.$hostname;
-        $text = "Application execution statement: ".$info;
-        $output->writeln($text);
+        $os_report = new OSReport();
+        $os_report->PrepareReport($input,$output);
+
+
+
+        //$kernel = $os_info->getKernel();
+        //$hostname = $os_info->getHostName();
+        //$info = 'Linux version: '.$kernel.' Hostname: '.$hostname;
+        //$text = "Application execution statement: ".$info;
+        //$output->writeln($text);
     }
 
     protected function role_database_execute(InputInterface $input, OutputInterface $output)
