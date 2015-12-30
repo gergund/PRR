@@ -25,13 +25,12 @@ class OSReport {
         $hostname = $os_info->getHostName();
 
         $output->writeln('');$output->writeln('');
-        $output->writeln('Table:');
+        $output->writeln('OS Parameters Table:');
 
         $table = new Table($output);
-        $table->addRow(['Platform:', ]);
+        $table->addRow(['Platform:', $platform]);
         $table->addRow(['Kernel version: ', $kernel]);
         $table->addRow(['Hostname: ', $hostname]);
-
 
         $table->render();
     }

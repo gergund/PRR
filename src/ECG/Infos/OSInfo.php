@@ -21,8 +21,7 @@ class OSInfo {
         if (preg_match('/Linux/', $contents, $match) != 1   ) {
             return 'Unknown';
         }
-
-        var_dump($match);
+        return $match[0];
     }
 
     public function getKernel(){
