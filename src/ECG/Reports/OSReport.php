@@ -21,16 +21,20 @@ class OSReport {
 
         $os_info = new OSInfo();
         $platform = $os_info->getPlatform();
+        $release = $os_info->getRelease();
         $kernel = $os_info->getKernel();
+        $arch = $os_info->getArchitecture();
         $hostname = $os_info->getHostName();
 
         $output->writeln('');$output->writeln('');
         $output->writeln('OS Parameters Table:');
 
         $table = new Table($output);
-        $table->addRow(['Platform:', $platform]);
-        $table->addRow(['Kernel version: ', $kernel]);
-        $table->addRow(['Hostname: ', $hostname]);
+        $table->addRow(['Platform', $platform]);
+        $table->addRow(['Release', $release]);
+        $table->addRow(['Architecture', $arch]);
+        $table->addRow(['Kernel', $kernel]);
+        $table->addRow(['Hostname', $hostname]);
 
         $table->render();
     }
