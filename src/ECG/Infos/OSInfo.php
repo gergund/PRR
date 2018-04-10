@@ -139,11 +139,9 @@ class OSInfo {
 
     public function getSElinux()
     {
-        $contents=shell_exec('getenforce');
-        $contents=trim($contents);
-
-        return $contents;die;
-
+        $contents=shell_exec('getenforce 2>&1');
+        $contents = trim($contents);
+        
         if (preg_match('/(Enforcing|Permissive|Disabled)/', $contents, $match) != 1) {
             return 'No SELinux detected';
         }
