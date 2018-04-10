@@ -85,8 +85,7 @@ class OSInfo {
 
     public function getThreading(){
 
-        $contents=shell_exec('getconf -a | grep GNU_LIBPTHREAD_VERSION &> /dev/null');
-
+        $contents=shell_exec('getconf -a | grep GNU_LIBPTHREAD_VERSION 2>&1');
         $contents=trim($contents);
 
         if (preg_match('/GNU_LIBPTHREAD_VERSION             (\S+ *.*)/', $contents, $match) != 1) {
@@ -141,7 +140,7 @@ class OSInfo {
     {
         $contents=shell_exec('getenforce 2>&1');
         $contents = trim($contents);
-        
+
         if (preg_match('/(Enforcing|Permissive|Disabled)/', $contents, $match) != 1) {
             return 'No SELinux detected';
         }
