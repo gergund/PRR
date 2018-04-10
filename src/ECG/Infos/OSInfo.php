@@ -50,11 +50,11 @@ class OSInfo {
         }
 
         $contents = file_get_contents($file);
-        if (preg_match('/amd64/', $contents, $match) != 1) {
+        if (preg_match('/(amd64|x86_64)/', $contents, $match) != 1) {
             return 'Unknown';
         }
 
-        if ($match[0] == 'amd64'){
+        if ($match[0] == 'amd64' || $match[0] == 'x86_64') {
             $os_arch = 'OS = 64-bit';
         }
         else {
