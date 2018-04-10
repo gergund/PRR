@@ -27,6 +27,7 @@ class OSReport {
         $compiler =$os_info->getCompiler();
         $threading = $os_info->getThreading();
         $hostname = $os_info->getHostName();
+        $selinux = $os_info->getSElinux();
 
         $output->writeln('');$output->writeln('');
         $output->writeln('OS Parameters Table:');
@@ -39,6 +40,7 @@ class OSReport {
         $table->addRow(['Threading', $threading]);
         $table->addRow(['Compiler', $compiler]);
         $table->addRow(['Hostname', $hostname]);
+        $table->addRow(['SELinux', $selinux]);
 
         $table->render();
     }

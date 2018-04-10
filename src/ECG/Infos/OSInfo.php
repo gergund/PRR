@@ -137,6 +137,20 @@ class OSInfo {
         return $hostname;
     }
 
+    public function getSElinux()
+    {
+        $contents=shell_exec('getenforce');
+        $contents=trim($contents);
+
+        return $contents;die;
+
+        if (preg_match('/(Enforcing|Permissive|Disabled)/', $contents, $match) != 1) {
+            return 'No SELinux detected';
+        }
+
+        return $match[0];
+    }
+
 
 
 }
