@@ -26,9 +26,15 @@ class OSInfo {
 
     public function getRelease() {
 
+        $file_system = '/etc/system-release';
         $file = '/etc/issue.net';
 
-        if (!is_file($file) || !is_readable($file)) {
+        if (is_file($file_system) || is_readable($file_system)) {
+            $release = trim(file_get_contents($file_system));
+
+            return $release;
+        }
+        elseif (!is_file($file) || !is_readable($file)) {
             return 'Unknown';
         }
 
