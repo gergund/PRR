@@ -214,4 +214,16 @@ class OSInfo {
         return sprintf("physical = %s, cores = %s, virtual = %s, hyperthreading = %s", $physical,$cores,$virtual,$hyperthreading);
     }
 
+    public function getModel()
+    {
+        $num_cpu = shell_exec('grep \'processor\' /proc/cpuinfo | wc -l');
+        $num_cpu = trim($num_cpu);
+
+        $model = shell_exec('grep \'model name\' /proc/cpuinfo | head -n 1 | cut -d: -f2');
+        $model = trim($model);
+
+        return sprintf('%sx%s',$num_cpu,$model);
+
+    }
+
 }

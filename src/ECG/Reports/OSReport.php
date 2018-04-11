@@ -30,6 +30,7 @@ class OSReport {
         $selinux = $os_info->getSElinux();
         $virtualized = $os_info->getVirtualized();
         $processors = $os_info->getProcessors();
+        $model = $os_info->getModel();
 
         $output->writeln('');$output->writeln('');
         $output->writeln('OS Parameters Table:');
@@ -45,6 +46,8 @@ class OSReport {
         $table->addRow(['SELinux', $selinux]);
         $table->addRow(['Virtualized', $virtualized]);
         $table->addRow(['Processors', $processors]);
+        $table->addRow(['Model', $model]);
+
 
         $table->render();
     }
