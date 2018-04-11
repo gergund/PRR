@@ -164,7 +164,7 @@ class OSInfo {
             $contents=shell_exec('lspci 2>&1');
             $contents = trim($contents);
 
-            if (preg_match('/(xen|kvm|virtualbox|vmware)/i', $contents, $match) != 1) {
+            if (preg_match('/(virtualbox|xen|vmware|kvm)/i', $contents, $match) != 1) {
                 return 'No Virtualization detected';
             }
 
