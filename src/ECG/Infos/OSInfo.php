@@ -154,12 +154,16 @@ class OSInfo {
         return $match[0];
     }
 
+    public function command_exists($cmd)
+    {
+        $return = shell_exec(sprintf("which %s", escapeshellarg($cmd)));
+        return !empty($return);
+    }
+
     public function getVirtualized()
     {
-        $file_lspci = '/usr/bin/lspci';
-        $file_hostnamectl = '/usr/bin/hostnamectl';
 
-        if (is_file($file_lspci) || is_readable($file_lspci)) {
+        if ( $this->command_exists('lspci') ) {
 
             $contents=shell_exec('lspci 2>&1');
             $contents = trim($contents);
@@ -170,7 +174,7 @@ class OSInfo {
 
             return $match[0];
         }
-        elseif (is_file($file_hostnamectl) || is_readable($file_hostnamectl)) {
+        elseif ( $this->command_exists('hostnamectl')) {
 
             $contents=shell_exec('hostnamectl 2>&1 | grep Virtualization');
             $contents = trim($contents);
