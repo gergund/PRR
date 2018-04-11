@@ -29,6 +29,7 @@ class OSReport {
         $hostname = $os_info->getHostName();
         $selinux = $os_info->getSElinux();
         $virtualized = $os_info->getVirtualized();
+        $processors = $os_info->getProcessors();
 
         $output->writeln('');$output->writeln('');
         $output->writeln('OS Parameters Table:');
@@ -43,6 +44,7 @@ class OSReport {
         $table->addRow(['Hostname', $hostname]);
         $table->addRow(['SELinux', $selinux]);
         $table->addRow(['Virtualized', $virtualized]);
+        $table->addRow(['Processors', $processors]);
 
         $table->render();
     }

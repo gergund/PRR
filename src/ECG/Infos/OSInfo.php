@@ -192,4 +192,26 @@ class OSInfo {
 
     }
 
+    public function getProcessors()
+    {
+        $physical = shell_exec('grep \'physical id\' /proc/cpuinfo | sort -u | wc -l');
+        $physical = trim($physical);
+
+        $cores = shell_exec('grep \'cpu cores\' /proc/cpuinfo | head -n 1 | cut -d: -f2');
+        $cores = trim($cores);
+
+        $virtual = shell_exec('grep -c \'^processor\' /proc/cpuinfo');
+        $virtual = trim($virtual);
+
+        if ($cores > 0 and $physical * $cores < $virtual){
+            $hyperthreading = 'yes';
+        }
+        else {
+            $hyperthreading = 'no';
+        }
+
+
+        return sprintf("physical = %s, cores = %s, virtual = %s, hyperthreading = %s", $physical,$cores,$virtual,$hyperthreading);
+    }
+
 }
