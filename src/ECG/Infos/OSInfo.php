@@ -154,6 +154,38 @@ class OSInfo {
         return $match[0];
     }
 
+    public function getVirtualized()
+    {
+        $file_lspci = '/usr/bin/lspci';
+        $file_hostnamectl = '/usr/bin/hostnamectl';
 
+        if (is_file($file_lspci) || is_readable($file_lspci)) {
+
+            $contents=shell_exec('lspci 2>&1');
+            $contents = trim($contents);
+
+            if (preg_match('/(xen|kvm|virtualbox|vmware)/i', $contents, $match) != 1) {
+                return 'No Virtualization detected';
+            }
+
+            return $match[0];
+        }
+        elseif (is_file($file_hostnamectl) || is_readable($file_hostnamectl)) {
+
+            $contents=shell_exec('hostnamectl 2>&1 | grep Virtualization');
+            $contents = trim($contents);
+
+            if (preg_match('/Virtualization: (\S+)/', $contents, $match) != 1) {
+                return 'No Virtualization detected';
+            }
+
+            return $match[1];
+
+        }
+        else {
+            return 'No Virtualization detected';
+        }
+
+    }
 
 }
