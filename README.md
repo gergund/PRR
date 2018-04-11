@@ -1,10 +1,10 @@
-#Performance Review Report Tool
+Performance Review Report Tool
 
 >To build .phar file: 
->```$vendor/bin/phar-builder package composer.json```
+```$vendor/bin/phar-builder package composer.json```
 
 >Download app.phar by URL: 
->```$wget https://github.com/gergund/PRR/raw/master/build/app.phar```
+```$wget https://github.com/gergund/PRR/raw/master/build/app.phar```
 
 >Run Performance Review Report tool: 
->```$php app.phar collect:data application```
+```$php app.phar collect:data application```
