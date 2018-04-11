@@ -1,13 +1,9 @@
 
-To build .phar file: 
-```$vendor/bin/phar-builder package composer.json```
+##To build .phar file: 
+	```$vendor/bin/phar-builder package composer.json```
 
-Download app.phar by URL:
-```$wget https://github.com/gergund/PRR/raw/master/build/app.phar```
+##Download app.phar by URL: 
+	```$wget https://github.com/gergund/PRR/raw/master/build/app.phar```
 
-Run Performance Review Report tool:
-```$php app.phar collect:data application```
-or
-```$chmod +x app.phar```
-```$./app.phar collect:data application```
-
+##Run Performance Review Report tool: 
+	```$php app.phar collect:data application```
