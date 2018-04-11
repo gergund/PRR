@@ -1,18 +1,18 @@
 
 To build .phar file: 
-$vendor/bin/phar-builder package composer.json
+```$vendor/bin/phar-builder package composer.json```
 
 Download app.phar by URL:
-$wget https://github.com/gergund/PRR/raw/master/build/app.phar
+```$wget https://github.com/gergund/PRR/raw/master/build/app.phar```
 
 Run Performance Review Report tool:
-$php app.phar collect:data application
+```$php app.phar collect:data application```
 or
-$chmod +x app.phar
-$./app.phar collect:data application
+```$chmod +x app.phar
+$./app.phar collect:data application```
 
 Report Example: 
-
+```
 Application Role:
 
 OS Parameters Table:
@@ -29,5 +29,5 @@ OS Parameters Table:
 | Processors   | physical = 2, cores = 1, virtual = 2, hyperthreading = no |
 | Model        | 2xIntel(R) Xeon(R) CPU E5-2640 0 @ 2.50GHz                |
 +--------------+-----------------------------------------------------------+
-
+```
 
