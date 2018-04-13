@@ -226,4 +226,20 @@ class OSInfo {
 
     }
 
+    public function getMemory()
+    {
+        $contents=shell_exec('grep \'MemTotal\' /proc/meminfo');
+        $contents = trim($contents);
+
+        if (preg_match('/MemTotal:\s+(\d+)/', $contents, $match) != 1) {
+            return 'Unknown';
+        }
+
+        var_dump(match[1]);
+
+        return sprintf('%sGB',round($match[1]/1024/1024));
+    }
+
+    
+
 }

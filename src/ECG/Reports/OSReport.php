@@ -31,6 +31,7 @@ class OSReport {
         $virtualized = $os_info->getVirtualized();
         $processors = $os_info->getProcessors();
         $model = $os_info->getModel();
+        $memory = $os_info->getMemory();
 
         $output->writeln('');$output->writeln('');
         $output->writeln('OS Parameters Table:');
@@ -47,6 +48,7 @@ class OSReport {
         $table->addRow(['Virtualized', $virtualized]);
         $table->addRow(['Processors', $processors]);
         $table->addRow(['Model', $model]);
+        $table->addRow(['Memory', $memory]);
 
 
         $table->render();
