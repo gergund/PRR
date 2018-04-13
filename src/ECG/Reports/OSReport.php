@@ -32,6 +32,7 @@ class OSReport {
         $processors = $os_info->getProcessors();
         $model = $os_info->getModel();
         $memory = $os_info->getMemory();
+        $httpserver = $os_info->getHTTPserver();
 
         $output->writeln('');$output->writeln('');
         $output->writeln('OS Parameters Table:');
@@ -49,6 +50,7 @@ class OSReport {
         $table->addRow(['Processors', $processors]);
         $table->addRow(['Model', $model]);
         $table->addRow(['Memory', $memory]);
+        $table->addRow(['HTTP server', $httpserver]);
 
 
         $table->render();

@@ -235,9 +235,57 @@ class OSInfo {
             return 'Unknown';
         }
 
-        var_dump(match[1]);
-
         return sprintf('%sGB',round($match[1]/1024/1024));
+    }
+
+    public function detectApache()
+    {
+        $contents=shell_exec('ps aux');
+        $contents = trim($contents);
+
+        if (preg_match('/(apache|httpd)/', $contents, $match) == 1) {
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
+
+    public function detectNginx()
+    {
+        $contents=shell_exec('ps aux');
+        $contents = trim($contents);
+
+        if (preg_match('/(nginx)/', $contents, $match) == 1) {
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
+
+    public function getHTTPserver()
+    {
+        if ($this->detectApache() == true){
+            $contents=shell_exec('apachectl -V 2>&1');
+            $contents = trim($contents);
+
+            if (preg_match('/Server version:\s(\S+)/', $contents, $match) == 1) {
+                return $match[1];
+            }
+
+        }
+        elseif ($this->detectNginx() == true){
+            $contents=shell_exec('nginx -V 2>&1');
+            $contents = trim($contents);
+
+            if (preg_match('/nginx version:\s(\S+)/', $contents, $match) == 1) {
+                return $match[1];
+            }
+        }
+        else {
+            return 'Not Found';
+        }
     }
 
     
