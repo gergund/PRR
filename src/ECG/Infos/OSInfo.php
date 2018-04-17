@@ -156,7 +156,7 @@ class OSInfo {
 
     public function command_exists($cmd)
     {
-        $return = shell_exec(sprintf("which %s", escapeshellarg($cmd)));
+        $return = shell_exec(sprintf("which %s 2>&1", escapeshellarg($cmd)));
         return !empty($return);
     }
 
