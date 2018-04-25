@@ -266,8 +266,17 @@ class OSInfo {
 
     public function whereis($cmd)
     {
-        $contents = shell_exec(sprintf("which %s 2>&1", escapeshellarg($cmd)));
-            return trim($contents);
+        $contents = shell_exec(sprintf("whereis %s 2>&1", escapeshellarg($cmd)));
+
+        $pattern = '/'.$cmd.':\s(\S+)/';
+
+        if (preg_match($pattern, $contents, $match) == 1) {
+            return $match[1];
+        }
+        else {
+            return NULL;
+        }
+
 
     }
 
@@ -288,8 +297,6 @@ class OSInfo {
         elseif ($this->detectNginx() == true and !is_null($this->whereis('nginx'))){
 
             $cmd = ''.$this->whereis('nginx').' -V 2>&1';
-
-            var_dump($cmd);
 
             $contents=shell_exec($cmd);
             $contents = trim($contents);
