@@ -264,10 +264,20 @@ class OSInfo {
         }
     }
 
+    public function whereis($cmd)
+    {
+        $contents = shell_exec(sprintf("which %s 2>&1", escapeshellarg($cmd)));
+            return trim($contents);
+
+    }
+
     public function getHTTPserver()
     {
-        if ($this->detectApache() == true){
-            $contents=shell_exec('apachectl -V 2>&1');
+        if ($this->detectApache() == true and !is_null($this->whereis('apachectl')) ){
+
+            $cmd = ''.$this->whereis('apachectl').' -V 2>&1';
+
+            $contents=shell_exec($cmd);
             $contents = trim($contents);
 
             if (preg_match('/Server version:\s(\S+)/', $contents, $match) == 1) {
@@ -275,8 +285,13 @@ class OSInfo {
             }
 
         }
-        elseif ($this->detectNginx() == true){
-            $contents=shell_exec('nginx -V 2>&1');
+        elseif ($this->detectNginx() == true and !is_null($this->whereis('nginx'))){
+
+            $cmd = ''.$this->whereis('nginx').' -V 2>&1';
+
+            var_dump($cmd);
+
+            $contents=shell_exec($cmd);
             $contents = trim($contents);
 
             if (preg_match('/nginx version:\s(\S+)/', $contents, $match) == 1) {
