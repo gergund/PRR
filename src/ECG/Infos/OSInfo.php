@@ -49,6 +49,7 @@ class OSInfo {
 
     public function getArchitecture() {
 
+
         $file = '/proc/version';
 
         if (!is_file($file) || !is_readable($file)) {
@@ -57,10 +58,16 @@ class OSInfo {
 
         $contents = file_get_contents($file);
         if (preg_match('/(amd64|x86_64)/', $contents, $match) != 1) {
-            return 'Unknown';
+
+            $lscpu=shell_exec('lscpu 2>&1');
+            $lscpu=trim($lscpu);
+
+            if (preg_match('/Architecture:\s+(\S+)/', $lscpu, $match) != 1) {
+                return 'Unknown';
+            }
         }
 
-        if ($match[0] == 'amd64' || $match[0] == 'x86_64') {
+        if ($match[0] == 'amd64' || $match[0] == 'x86_64' || $match[1] == 'x86_64') {
             $os_arch = 'OS = 64-bit';
         }
         else {
