@@ -7,4 +7,4 @@ Performance Review Report Tool
 ```$wget https://github.com/gergund/PRR/raw/master/build/app.phar```
 
 >Run Performance Review Report tool: 
-```$php app.phar collect:data application```
+```$php app.phar collect:data application --magento-dir=/var/www/html/```
