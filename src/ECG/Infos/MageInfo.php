@@ -11,8 +11,31 @@ namespace ECG\Infos;
 
 class MageInfo
 {
-    public function getVersion()
+    public function getVersion($magedir)
     {
-        return '2.2.2 EE';
+        $file = $magedir.'/composer.json';
+
+        if (!is_file($file) || !is_readable($file)) {
+            return 'Unknown';
+        }
+
+        $contents = file_get_contents($file);
+        if (preg_match('/"version":\s"(\S+)"/', $contents, $match) != 1   ) {
+            $mageversion =  'Unknown';
+        }else{
+            $mageversion=  $match[1];
+        }
+
+
+        if (preg_match('/"description": "(.+)"/', $contents, $match) != 1   ) {
+            $magedir = 'Unknown';
+        }else{
+            $magedistr = $match[1];
+        }
+
+        return ''.$mageversion.' '.$magedistr;
+
+
+
     }
 }

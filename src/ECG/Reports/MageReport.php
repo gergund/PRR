@@ -20,14 +20,17 @@ class MageReport
     public function PrepareReport(InputInterface $input, OutputInterface $output){
 
         $mage_info = new MageInfo();
-        $version = $mage_info->getVersion();
+
+        $magedir = $input->getOption('magento-dir');
+        $version = $mage_info->getVersion($magedir);
+
 
 
         $output->writeln('');$output->writeln('');
         $output->writeln('Magento Parameters Table:');
 
         $table = new Table($output);
-        $table->addRow(['Version', $version]);
+        $table->addRow(['Magento Version', $version]);
 
 
         $table->render();
