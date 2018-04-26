@@ -27,7 +27,7 @@ class PHPReport
         $output->writeln('PHP Parameters Table:');
 
         $table = new Table($output);
-        $table->addRow(['Version', $version]);
+        $table->addRow(['PHP Version', $version]);
 
 
         $table->render();

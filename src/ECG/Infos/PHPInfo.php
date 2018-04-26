@@ -13,6 +13,6 @@ class PHPInfo
 {
     public function getVersion()
     {
-        return '7.0';
+        return phpversion();
     }
 }
